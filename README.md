@@ -12,8 +12,8 @@
             default : ''
             note    : Use tabulation or other symbols
 ## Import
-```python
-        import mlogger
+```bash
+> git submodule add https://github.com/mtvy/mlogger.git
 ```
 ## Usage
 ```python3
