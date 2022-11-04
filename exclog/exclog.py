@@ -1,5 +1,5 @@
 #/==================================================================\#
-# mlogger.py                                          (c) Mtvy, 2022 #
+# exclog.py                                           (c) Mtvy, 2022 #
 #\==================================================================/#
 #                                                                    #
 # Copyright (c) 2022. Mtvy (Matvei Prudnikov, m.d.prudnik@gmail.com) #
@@ -13,16 +13,16 @@ from traceback import format_exc as _exc
 
 
 #\------------------------------------------------------------------/#
-def logging(__write : Callable[[str], None]=print, __rtrn=False, __t=''):
+def logging(out : Callable[[str], None]=print, rtrn=False, t=''):
     """ 
-        ### Mlogging decorator.
-        __write -> 
+        ### Exclog decorator.
+        out -> 
             brief   : function that takes a string.
             default : print
-        __rtrn ->
-            brief   : mlogging return value
+        rtrn ->
+            brief   : exclog return value
             default : False
-        __t ->
+        t ->
             brief   : Error indentation
             default : ''
             note    : Use tabulation or other symbols
@@ -38,16 +38,16 @@ def logging(__write : Callable[[str], None]=print, __rtrn=False, __t=''):
             except:
                 tr = _exc().split('\n')
                 exc = (
-                    f'{GRY}{__t}│'
-                       f'\n{__t}└{RD}Erorr at: [{func.__name__}]{GRY}'
-                       f'\n{__t} │'
-                       f'\n{__t} └{RD}{tr[0]}'
+                    f'{GRY}{t}│'
+                       f'\n{t}└{RD}Erorr at: [{func.__name__}]{GRY}'
+                       f'\n{t} │'
+                       f'\n{t} └{RD}{tr[0]}'
                 )
                 for line in tr[1:]:
-                    exc = f'{exc}\n{__t}  {line}'
-                __write(f"{exc}{DF}")
+                    exc = f'{exc}\n{t}  {line}'
+                out(f"{exc}{DF}")
 
-            return __rtrn
+            return rtrn
 
         return wrap_func
         

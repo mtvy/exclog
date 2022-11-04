@@ -1,7 +1,7 @@
 
-import mlogger
+import exclog
 
-@mlogger.logging()
+@exclog.logging()
 def test_calc(x : int, y : int) -> None:
     print(f'x : {x}, y : {y}')
     print(f'x/y = {x/y}\n')
